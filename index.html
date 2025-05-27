@@ -434,6 +434,108 @@
             font-size: 1.8rem;
         }
 
+        /* Interactive Ad section styles */
+        .interactive-ad {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .ad-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+
+        .ad-card {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            cursor: pointer;
+            transform: scale(0) rotateY(0deg);
+            opacity: 0;
+            margin-bottom: 60px;
+        }
+
+        .ad-card.visible {
+            transform: scale(1) rotateY(0deg);
+            opacity: 1;
+        }
+
+        .ad-card.flipped {
+            transform: scale(1) rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+            padding: 10px;
+        }
+
+        .front {
+            transform: rotateY(0deg);
+        }
+
+        .back {
+            transform: rotateY(180deg);
+        }
+
+        .card-image {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .card-image:hover {
+            transform: scale(1.02);
+        }
+
+        .toggle-button {
+            display: block;
+            margin: 20px auto 0;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--orange), var(--yellow));
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 123, 37, 0.4);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .toggle-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 123, 37, 0.6);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 123, 37, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 123, 37, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 123, 37, 0); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
         /* Impact styles */
         .impact-content {
             text-align: center;
@@ -514,7 +616,7 @@
             width: 700px;
             max-width: 90%;
             max-height: 90vh;
-            overflow: hidden; /* Elimina la barra de desplazamiento externa */
+            overflow: hidden;
             box-shadow: 0 10px 40px rgba(0,0,0,0.5);
             border: 1px solid var(--orange);
             position: relative;
@@ -540,7 +642,7 @@
         .survey-iframe-container {
             width: 100%;
             height: 80vh;
-            overflow-y: auto; /* Solo desplazamiento vertical */
+            overflow-y: auto;
             border-radius: 8px;
         }
 
@@ -618,6 +720,10 @@
                 padding-right: 0;
                 margin-bottom: 30px;
             }
+
+            .ad-card {
+                height: 400px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -672,6 +778,10 @@
             .survey-iframe-container {
                 height: 70vh;
             }
+
+            .ad-card {
+                height: 350px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -690,6 +800,15 @@
             .survey-btn {
                 padding: 12px 25px;
                 font-size: 0.9rem;
+            }
+
+            .ad-card {
+                height: 300px;
+            }
+
+            .toggle-button {
+                padding: 10px 20px;
+                font-size: 14px;
             }
         }
     </style>
@@ -712,6 +831,7 @@
                 <li class="tab" data-tab="problem">Problem</li>
                 <li class="tab" data-tab="effects">Effects</li>
                 <li class="tab" data-tab="action">Action plan</li>
+                <li class="tab" data-tab="ad">Interactive Ad</li>
                 <li class="tab" data-tab="impact">Impact</li>
             </ul>
             
@@ -788,6 +908,22 @@
                     <p>Show damage to health.</p>
                     <p>Show the benefits of good nutrition.</p>
                     <p>Prioritize whole foods, read food labels, cook at home more often.</p>
+                </div>
+            </div>
+            
+            <div id="ad" class="content">
+                <div class="interactive-ad">
+                    <div class="ad-container">
+                        <div class="ad-card">
+                            <div class="card-face front">
+                                <img src="https://i.ibb.co/n81d4YdQ/Whats-App-Image-2025-05-15-at-11-01-48-PM.jpg" alt="Publicidad" class="card-image">
+                            </div>
+                            <div class="card-face back">
+                                <img src="https://i.ibb.co/XrCP9QWh/Whats-App-Image-2025-05-15-at-11-01-48-PM-1.jpg" alt="Publicidad Reverso" class="card-image">
+                            </div>
+                        </div>
+                        <button class="toggle-button pulse">Flyer</button>
+                    </div>
                 </div>
             </div>
             
@@ -940,6 +1076,33 @@
                     document.body.style.overflow = 'auto';
                 }
             });
+            
+            // Interactive Ad functionality
+            const adCard = document.querySelector('.ad-card');
+            const toggleButton = document.querySelector('.toggle-button');
+            let isVisible = false;
+
+            function toggleCard() {
+                isVisible = !isVisible;
+                
+                if (isVisible) {
+                    adCard.classList.add('visible');
+                    toggleButton.textContent = 'Hide Flyer';
+                    toggleButton.classList.remove('pulse');
+                } else {
+                    adCard.classList.remove('visible', 'flipped');
+                    toggleButton.textContent = 'View Flyer';
+                    toggleButton.classList.add('pulse');
+                }
+            }
+
+            function flipCard() {
+                if (!isVisible) return;
+                adCard.classList.toggle('flipped');
+            }
+
+            toggleButton.addEventListener('click', toggleCard);
+            adCard.addEventListener('click', flipCard);
         });
     </script>
 </body>

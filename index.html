@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comunidad Gamer</title>
-    <link rel="icon" type="image/png" href="https://i.ibb.co/Dfy1j8QM/Whats-App-Image-2025-05-24-at-11-07-23-PM-Photoroom.png">
     <style>
         /* Estilos generales */
         * {
@@ -20,6 +19,16 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+        }
+        
+        /* Fondo de partículas */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
         }
         
         /* Encabezado */
@@ -41,18 +50,27 @@
             font-style: italic;
         }
         
+        /* Contenedor principal */
+        .main-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            gap: 20px;
+        }
+        
         /* Ventana principal */
         .main-window {
             background-color: rgba(20, 20, 40, 0.8);
             border-radius: 15px;
             padding: 20px;
-            margin: 20px;
             backdrop-filter: blur(5px);
             border: 1px solid #333355;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
+            width: 100%;
+            max-width: 500px;
         }
         
         .section-title {
@@ -61,6 +79,32 @@
             font-size: 1.8rem;
             border-bottom: 2px solid #00a86b;
             padding-bottom: 5px;
+            text-align: center;
+        }
+        
+        /* Área de video */
+        .video-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
+            border: 2px solid #333355;
+        }
+        
+        .video-ad {
+            width: 100%;
+            height: 337.5px; /* Relación 16:9 */
+            background-color: #000;
+        }
+        
+        .video-title {
+            padding: 10px;
+            text-align: center;
+            background-color: rgba(30, 30, 60, 0.8);
+            font-size: 1.1rem;
         }
         
         /* Botones */
@@ -68,7 +112,7 @@
             display: block;
             width: 100%;
             padding: 12px;
-            margin: 10px 0;
+            margin: 10px auto;
             background-color: #1a1a3a;
             color: #ffffff;
             border: none;
@@ -76,12 +120,10 @@
             font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-align: left;
+            text-align: center;
             position: relative;
             overflow: hidden;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 300px;
         }
         
         .button:hover {
@@ -243,9 +285,14 @@
         
         /* Juegos de la comunidad */
         .games-section {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px solid #333355;
+            width: 100%;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(20, 20, 40, 0.8);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid #333355;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         }
         
         .games-gallery {
@@ -295,6 +342,16 @@
         }
         
         /* Responsive */
+        @media (max-width: 1200px) {
+            .main-container {
+                justify-content: center;
+            }
+            
+            .main-window, .video-container {
+                max-width: 100%;
+            }
+        }
+        
         @media (max-width: 768px) {
             .game-card {
                 width: 150px;
@@ -312,6 +369,10 @@
             .popup {
                 width: 95%;
             }
+            
+            .video-ad {
+                height: 225px; /* 16:9 para móviles */
+            }
         }
         
         @media (max-width: 480px) {
@@ -324,24 +385,40 @@
                 font-size: 0.8rem;
                 padding: 5px;
             }
+            
+            .button {
+                max-width: 250px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Fondo de partículas -->
+    <div id="particles-js"></div>
+    
     <!-- Encabezado -->
     <div class="header">
         <h1 class="title">Comunidad Gamer</h1>
         <p class="subtitle">Una zona donde todos son bienvenidos</p>
     </div>
     
-    <!-- Ventana principal -->
-    <div class="main-window">
-        <h2 class="section-title">Apartados</h2>
+    <!-- Contenedor principal -->
+    <div class="main-container">
+        <!-- Ventana principal -->
+        <div class="main-window">
+            <h2 class="section-title">Apartados</h2>
+            
+            <!-- Botones principales -->
+            <button class="button" id="discordBtn">Discord</button>
+            <button class="button" id="membersBtn">Miembros</button>
+            <button class="button" id="twitchBtn">Twitch</button>
+        </div>
         
-        <!-- Botones principales -->
-        <button class="button" id="discordBtn">Discord</button>
-        <button class="button" id="membersBtn">Miembros</button>
-        <button class="button" id="twitchBtn">Twitch</button>
+        <!-- Área de video -->
+        <div class="video-container">
+            <div class="video-ad" id="videoPlayer"></div>
+            <div class="video-title" id="videoTitle">Publicidad de la comunidad</div>
+        </div>
         
         <!-- Sección de juegos -->
         <div class="games-section">
@@ -402,7 +479,7 @@
             <li class="member-item">Vikorey</li>
             <li class="member-item">Dam</li>
             <li class="member-item">Santiago L</li>
-            <li class="member-item">corazón negro</li>
+            <li class="member-item">Nixxena</li>
             <li class="member-item">Hansy</li>
             <li class="member-item">Jesús</li>
             <li class="member-item">Aaron</li>
@@ -444,7 +521,7 @@
                 <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Santiago L</a>
             </li>
             <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">corazón negro</a>
+                <a href="https://www.twitch.tv/nixxenna" target="_blank" class="twitch-link">Nixxena</a>
             </li>
             <li class="member-item">
                 <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Hansy</a>
@@ -472,9 +549,177 @@
         <button class="close-btn" id="closeTwitch"></button>
     </div>
     
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Funcionalidad de los botones
+        // Inicializar partículas
         document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#ff7b00"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#00a86b",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+            
+            // Videos aleatorios
+            const videos = [
+                {
+                    id: "VjMnIDyXlAU",
+                    title: "THE FINALS - Gameplay"
+                },
+                {
+                    id: "U2277C9FSLA",
+                    title: "Apex Legends - Highlights"
+                },
+                {
+                    id: "wqFc14Fykkk",
+                    title: "Fortnite - Nuevas actualizaciones"
+                },
+                {
+                    id: "JYHaeHTyxPA",
+                    title: "WarZone - Mejores momentos"
+                }
+                // Agrega más videos aquí con el mismo formato
+            ];
+            
+            let currentVideoIndex = Math.floor(Math.random() * videos.length);
+            const videoPlayer = document.getElementById('videoPlayer');
+            const videoTitle = document.getElementById('videoTitle');
+            
+            function loadRandomVideo() {
+                currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+                const video = videos[currentVideoIndex];
+                
+                videoPlayer.innerHTML = `
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="https://www.youtube.com/embed/${video.id}?autoplay=1&mute=1&enablejsapi=1" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                `;
+                
+                videoTitle.textContent = video.title;
+                
+                // Configurar el evento para cargar el siguiente video cuando termine
+                const iframe = videoPlayer.querySelector('iframe');
+                iframe.onload = function() {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"addEventListener","args":["ended",nextVideo]}', '*');
+                };
+            }
+            
+            function nextVideo() {
+                loadRandomVideo();
+            }
+            
+            // Iniciar el primer video
+            loadRandomVideo();
+            
+            // Configurar intervalo para cambiar videos (por si acaso no se detecta el evento ended)
+            setInterval(nextVideo, 60000); // Cambia cada 60 segundos
+            
+            // Funcionalidad de los botones
             // Discord
             const discordBtn = document.getElementById('discordBtn');
             const discordPopup = document.getElementById('discordPopup');

@@ -1,1109 +1,560 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Over-processed Foods</title>
-    <link rel="icon" type="image/png" href="https://i.ibb.co/Dfy1j8QM/Whats-App-Image-2025-05-24-at-11-07-23-PM-Photoroom.png">
+    <title>Comunidad Gamer</title>
     <style>
-        :root {
-            --dark-bg: #121212;
-            --gray-dark: #1e1e1e;
-            --gray-medium: #2d2d2d;
-            --gray-light: #3d3d3d;
-            --orange: #ff7b25;
-            --orange-light: #ff9a56;
-            --yellow: #ffd166;
-            --white: #f5f5f5;
-            --text-gray: #b0b0b0;
-        }
-
+        /* Estilos generales */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', 'Arial', sans-serif;
+            font-family: 'Arial', sans-serif;
         }
-
+        
         body {
-            background-color: var(--dark-bg);
-            color: var(--white);
-            line-height: 1.7;
-            background-image: radial-gradient(circle at 10% 20%, var(--gray-dark) 0%, var(--dark-bg) 90%);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 40px;
-        }
-
-        h1 {
-            text-align: center;
-            margin: 40px 0 30px;
-            color: var(--yellow);
-            font-size: 3.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 10px rgba(255, 209, 102, 0.3);
+            background-color: #0a0a1a;
+            color: #ffffff;
+            min-height: 100vh;
             position: relative;
-            padding-bottom: 20px;
+            overflow-x: hidden;
         }
-
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--orange), var(--yellow));
-            border-radius: 2px;
+        
+        /* Encabezado */
+        .header {
+            padding: 20px;
+            text-align: left;
         }
-
-        .presentation {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 60px;
-            background-color: var(--gray-dark);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid var(--gray-light);
-            position: relative;
-            overflow: hidden;
+        
+        .title {
+            color: #ff7b00;
+            font-size: 3rem;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px #000000;
         }
-
-        .presentation::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,123,37,0.1) 0%, rgba(0,0,0,0) 70%);
-            transform: rotate(30deg);
-            animation: shine 8s infinite linear;
-        }
-
-        .slogan {
-            flex: 1;
-            text-align: center;
-            padding-right: 50px;
-            z-index: 1;
-        }
-
-        .slogan h2 {
-            font-size: 4rem;
-            color: var(--orange);
-            margin-bottom: 25px;
-            line-height: 1.2;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .slogan p {
-            font-size: 1.8rem;
-            color: var(--yellow);
-            font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-
-        .presentation img {
-            max-width: 450px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-            border: 2px solid var(--orange);
-            z-index: 1;
-            transition: transform 0.5s ease;
-        }
-
-        .presentation:hover img {
-            transform: scale(1.03);
-        }
-
-        .tabs-container {
-            margin: 40px 0;
-            position: relative;
-        }
-
-        .tabs {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            animation: fadeIn 1s ease-in-out;
-            gap: 15px;
-        }
-
-        .tab {
-            padding: 18px 35px;
-            background-color: var(--gray-medium);
-            color: var(--text-gray);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            border: none;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .tab::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--orange), var(--yellow));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .tab:hover {
-            transform: translateY(-5px);
-            color: var(--white);
-            box-shadow: 0 10px 25px rgba(255, 123, 37, 0.3);
-        }
-
-        .tab:hover::before {
-            opacity: 0.2;
-        }
-
-        .tab.active-tab {
-            background: linear-gradient(45deg, var(--orange), var(--yellow));
-            color: var(--dark-bg);
-            font-weight: 700;
-            box-shadow: 0 5px 20px rgba(255, 123, 37, 0.5);
-        }
-
-        .content {
-            display: none;
-            padding: 40px;
-            background-color: var(--gray-dark);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-top: 20px;
-            border: 1px solid var(--gray-light);
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        .active-content {
-            display: block;
-        }
-
-        /* Problem section styles */
-        .problem-content {
-            text-align: center;
-        }
-
-        .problem-content p {
-            margin-bottom: 40px;
+        
+        .subtitle {
+            color: #00a86b;
             font-size: 1.2rem;
-            color: var(--text-gray);
-            line-height: 1.8;
-        }
-
-        .problem-buttons {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 40px;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .problem-btn {
-            padding: 15px 30px;
-            background-color: var(--gray-medium);
-            color: var(--orange-light);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            font-weight: 600;
-            position: relative;
-            overflow: hidden;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            min-width: 160px;
-        }
-
-        .problem-btn::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background: linear-gradient(
-                to right,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.3) 50%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(30deg);
-            transition: all 0.7s ease;
-        }
-
-        .problem-btn:hover {
-            background-color: var(--gray-light);
-            color: var(--yellow);
-            box-shadow: 0 5px 20px rgba(255, 154, 86, 0.4);
-        }
-
-        .problem-btn:hover::before {
-            left: 100%;
-            top: 100%;
-        }
-
-        .problem-info {
-            display: none;
-            margin-top: 30px;
-            padding: 30px;
-            background-color: var(--gray-medium);
-            border-radius: 10px;
-            border-left: 5px solid var(--orange);
-            animation: fadeIn 0.7s ease-in-out;
-            text-align: left;
-        }
-
-        .problem-info.active-info {
-            display: block;
-        }
-
-        .problem-info p {
-            margin-bottom: 25px;
-            color: var(--white);
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .problem-info img {
-            max-width: 100%;
-            height: auto;
-            margin: 25px auto 0;
-            display: block;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-            border: 1px solid var(--gray-light);
-            transition: transform 0.5s ease;
-            max-height: 400px;
-            object-fit: cover;
-        }
-
-        .problem-info img:hover {
-            transform: scale(1.02);
-        }
-
-        /* Effects section styles */
-        .effects-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 40px;
-            gap: 20px;
-        }
-
-        .effects-tab {
-            padding: 15px 30px;
-            background-color: var(--gray-medium);
-            color: var(--text-gray);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            min-width: 200px;
-        }
-
-        .effects-tab:hover {
-            background-color: var(--gray-light);
-            color: var(--white);
-        }
-
-        .effects-tab.active-effects-tab {
-            background: linear-gradient(45deg, var(--orange), var(--yellow));
-            color: var(--dark-bg);
-            font-weight: 700;
-            box-shadow: 0 5px 20px rgba(255, 123, 37, 0.4);
-        }
-
-        .effects-content {
-            display: none;
-            animation: fadeIn 0.7s ease-in-out;
-            gap: 40px;
-        }
-
-        .effects-content.active-effects-content {
-            display: flex;
-        }
-
-        .effects-list {
-            flex: 2;
-            padding-right: 30px;
-        }
-
-        .effects-list p {
-            margin-bottom: 25px;
-            color: var(--text-gray);
-            font-size: 1.1rem;
-        }
-
-        .effects-list ul {
-            list-style-type: none;
-            margin-bottom: 30px;
-        }
-
-        .effects-list li {
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
-            color: var(--white);
-        }
-
-        .effects-list li::before {
-            content: '•';
-            color: var(--orange);
-            font-size: 1.5rem;
-            position: absolute;
-            left: 0;
-            top: -5px;
-        }
-
-        .quote {
-            flex: 1;
-            padding: 30px;
-            background-color: var(--gray-medium);
-            border-left: 5px solid var(--yellow);
             font-style: italic;
-            border-radius: 10px;
-            align-self: flex-start;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-
-        .quote p {
-            color: var(--yellow);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            position: relative;
-        }
-
-        .quote p::before,
-        .quote p::after {
-            content: '"';
-            color: var(--orange-light);
-            font-size: 1.5rem;
-        }
-
-        /* Action plan styles */
-        .action-plan {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .action-plan p {
-            font-size: 1.4rem;
-            margin-bottom: 30px;
-            color: var(--white);
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 3px solid var(--orange);
-            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
-            text-align: left;
-            padding-left: 50px;
-            position: relative;
-            font-weight: 500;
-        }
-
-        .action-plan p::before {
-            content: '→';
-            color: var(--yellow);
-            position: absolute;
-            left: 0;
-            font-size: 1.8rem;
-        }
-
-        /* Interactive Ad section styles */
-        .interactive-ad {
-            text-align: center;
-            padding: 40px 0;
-        }
-
-        .ad-container {
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            perspective: 1000px;
-        }
-
-        .ad-card {
-            width: 100%;
-            height: 500px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            cursor: pointer;
-            transform: scale(0) rotateY(0deg);
-            opacity: 0;
-            margin-bottom: 60px;
-        }
-
-        .ad-card.visible {
-            transform: scale(1) rotateY(0deg);
-            opacity: 1;
-        }
-
-        .ad-card.flipped {
-            transform: scale(1) rotateY(180deg);
-        }
-
-        .card-face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
+        
+        /* Ventana principal */
+        .main-window {
+            background-color: rgba(20, 20, 40, 0.8);
             border-radius: 15px;
+            padding: 20px;
+            margin: 20px;
+            backdrop-filter: blur(5px);
+            border: 1px solid #333355;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .section-title {
+            color: #ff7b00;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #00a86b;
+            padding-bottom: 5px;
+        }
+        
+        /* Botones */
+        .button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background-color: #1a1a3a;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .button:hover {
+            background-color: #2a2a5a;
+            transform: translateX(5px);
+        }
+        
+        .button:active, .button.active {
+            background-color: #ff7b00;
+            color: #0a0a1a;
+        }
+        
+        .button::after {
+            content: '→';
+            position: absolute;
+            right: 15px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .button:hover::after {
+            opacity: 1;
+            right: 10px;
+        }
+        
+        /* Ventanas emergentes */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 400px;
+            max-height: 80vh;
+            background-color: #151530;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+            transition: all 0.4s ease;
+            z-index: 100;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .popup.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .popup-title {
+            color: #00a86b;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .close-btn {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            background-color: #ff7b00;
+            color: #0a0a1a;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
             display: flex;
-            justify-content: center;
             align-items: center;
-            background: #fff;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background-color: #ff9b40;
+            transform: scale(1.1);
+        }
+        
+        .close-btn::before {
+            content: '←';
+        }
+        
+        /* Lista de miembros */
+        .member-list {
+            list-style-type: none;
+            max-height: 50vh;
+            overflow-y: auto;
             padding: 10px;
         }
-
-        .front {
-            transform: rotateY(0deg);
+        
+        .member-item {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #252545;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
-
-        .back {
-            transform: rotateY(180deg);
+        
+        .member-item:hover {
+            background-color: #353565;
         }
-
-        .card-image {
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        .card-image:hover {
-            transform: scale(1.02);
-        }
-
-        .toggle-button {
-            display: block;
-            margin: 20px auto 0;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, var(--orange), var(--yellow));
-            color: var(--dark-bg);
-            border: none;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 123, 37, 0.4);
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .toggle-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 123, 37, 0.6);
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 123, 37, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 123, 37, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 123, 37, 0); }
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        /* Impact styles */
-        .impact-content {
-            text-align: center;
-            font-size: 1.5rem;
-            color: var(--yellow);
-            line-height: 1.8;
-            padding: 40px;
-            background: linear-gradient(135deg, rgba(255,123,37,0.1) 0%, rgba(255,209,102,0.05) 100%);
-            border-radius: 15px;
-            border: 1px solid var(--orange);
-            animation: explode 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 40px rgba(255, 123, 37, 0.2);
-        }
-
-        /* Footer styles */
-        footer {
-            text-align: center;
-            margin-top: 80px;
-            padding: 20px 0;
-            border-top: 1px solid var(--gray-light);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .opinion-text {
-            color: var(--text-gray);
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-
-        .survey-btn {
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, var(--orange), var(--yellow));
-            color: var(--dark-bg);
-            border-radius: 8px;
-            transition: all 0.4s ease;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            border: 1px solid var(--orange-light);
-            box-shadow: 0 5px 15px rgba(255, 123, 37, 0.3);
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 1rem;
+        
+        .twitch-link {
+            color: #9147ff;
             text-decoration: none;
-            text-align: center;
-            min-width: 200px;
+            display: block;
         }
-
-        .survey-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 123, 37, 0.5);
-            opacity: 0.9;
+        
+        .twitch-link:hover {
+            text-decoration: underline;
         }
-
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        .modal-content {
-            background-color: var(--gray-dark);
-            padding: 30px;
-            border-radius: 15px;
-            width: 700px;
-            max-width: 90%;
-            max-height: 90vh;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            border: 1px solid var(--orange);
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            color: var(--text-gray);
+        
+        .join-btn {
+            display: block;
+            width: 200px;
+            padding: 10px;
+            margin: 20px auto 0;
+            background-color: #5865F2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
             cursor: pointer;
-            transition: color 0.3s ease;
-            background: none;
-            border: none;
-            padding: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
         }
-
-        .close-modal:hover {
-            color: var(--orange);
+        
+        .join-btn:hover {
+            background-color: #4752C4;
+            transform: scale(1.05);
         }
-
-        .survey-iframe-container {
-            width: 100%;
-            height: 80vh;
-            overflow-y: auto;
-            border-radius: 8px;
+        
+        /* Reglas */
+        .rules-container {
+            background-color: rgba(30, 30, 60, 0.7);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #ff7b00;
         }
-
-        .survey-iframe {
+        
+        .rules-title {
+            color: #00a86b;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .rules-list {
+            padding-left: 20px;
+        }
+        
+        .rules-list li {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        /* Juegos de la comunidad */
+        .games-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #333355;
+        }
+        
+        .games-gallery {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .games-gallery.active {
+            display: flex;
+        }
+        
+        .game-card {
+            width: 180px;
+            height: 240px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .game-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .game-image {
             width: 100%;
             height: 100%;
-            border: none;
-            border-radius: 8px;
-            overflow: hidden;
+            object-fit: cover;
         }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        .game-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9rem;
         }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--orange) }
-        }
-
-        @keyframes explode {
-            0% { transform: scale(0.1); opacity: 0; }
-            70% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        @keyframes shine {
-            0% { transform: rotate(30deg) translate(-30%, -30%); }
-            100% { transform: rotate(30deg) translate(20%, 20%); }
-        }
-
-        @keyframes bubbleExplode {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.8); opacity: 0.8; background-color: var(--orange); }
-            100% { transform: scale(0); opacity: 0; }
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            .presentation {
-                flex-direction: column;
-                text-align: center;
-                padding: 30px;
-            }
-
-            .slogan {
-                padding-right: 0;
-                margin-bottom: 30px;
-            }
-
-            .slogan h2 {
-                font-size: 3rem;
-            }
-
-            .slogan p {
-                font-size: 1.5rem;
-            }
-
-            .presentation img {
-                max-width: 100%;
-            }
-
-            .effects-content.active-effects-content {
-                flex-direction: column;
-            }
-
-            .effects-list {
-                padding-right: 0;
-                margin-bottom: 30px;
-            }
-
-            .ad-card {
-                height: 400px;
-            }
-        }
-
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
+            .game-card {
+                width: 150px;
+                height: 200px;
             }
-
-            .slogan h2 {
+            
+            .title {
                 font-size: 2.2rem;
             }
-
-            .slogan p {
-                font-size: 1.2rem;
-            }
-
-            .tabs {
-                flex-wrap: wrap;
-            }
-
-            .tab {
-                padding: 15px 25px;
-                font-size: 0.9rem;
-            }
-
-            .content {
-                padding: 30px 20px;
-            }
-
-            .problem-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .action-plan p {
-                font-size: 1.1rem;
-                padding-left: 40px;
-                white-space: normal;
-                animation: none;
-                border-right: none;
-            }
-
-            .impact-content {
-                font-size: 1.2rem;
-                padding: 30px 20px;
-            }
-
-            .modal-content {
-                padding: 20px;
-                width: 95%;
-            }
-
-            .survey-iframe-container {
-                height: 70vh;
-            }
-
-            .ad-card {
-                height: 350px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .modal-content {
-                padding: 15px;
-            }
-
-            .survey-iframe-container {
-                height: 60vh;
-            }
-
-            .opinion-text {
+            
+            .subtitle {
                 font-size: 1rem;
             }
-
-            .survey-btn {
-                padding: 12px 25px;
-                font-size: 0.9rem;
+            
+            .popup {
+                width: 95%;
             }
-
-            .ad-card {
-                height: 300px;
+        }
+        
+        @media (max-width: 480px) {
+            .game-card {
+                width: 120px;
+                height: 160px;
             }
-
-            .toggle-button {
-                padding: 10px 20px;
-                font-size: 14px;
+            
+            .game-name {
+                font-size: 0.8rem;
+                padding: 5px;
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Over-processed Foods</h1>
+    <!-- Encabezado -->
+    <div class="header">
+        <h1 class="title">Comunidad Gamer</h1>
+        <p class="subtitle">Una zona donde todos son bienvenidos</p>
+    </div>
+    
+    <!-- Ventana principal -->
+    <div class="main-window">
+        <h2 class="section-title">Apartados</h2>
         
-        <div class="presentation">
-            <div class="slogan">
-                <h2>HEALTH IS LIFE,<br>LIFE IS EATING</h2>
-                <p>Good health depends on us.</p>
+        <!-- Botones principales -->
+        <button class="button" id="discordBtn">Discord</button>
+        <button class="button" id="membersBtn">Miembros</button>
+        <button class="button" id="twitchBtn">Twitch</button>
+        
+        <!-- Sección de juegos -->
+        <div class="games-section">
+            <h2 class="section-title">Juegos de la comunidad</h2>
+            <button class="button" id="gamesBtn">¿Qué se juega?</button>
+            
+            <!-- Galería de juegos -->
+            <div class="games-gallery" id="gamesGallery">
+                <div class="game-card">
+                    <img src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/06/the-finals.jpg" alt="THE FINALS" class="game-image">
+                    <div class="game-name">THE FINALS</div>
+                </div>
+                <div class="game-card">
+                    <img src="https://th.bing.com/th/id/OIP._hQeorxZm4x_Jg2LsPzXtAAAAA?r=0&rs=1&pid=ImgDetMain" alt="Apex Legends" class="game-image">
+                    <div class="game-name">Apex Legends</div>
+                </div>
+                <div class="game-card">
+                    <img src="https://i.pinimg.com/originals/8f/16/e9/8f16e97ab5cc7873debc229c7a527a07.jpg" alt="Fortnite" class="game-image">
+                    <div class="game-name">Fortnite</div>
+                </div>
+                <div class="game-card">
+                    <img src="https://th.bing.com/th/id/OIP.HCb9qcYZmDUtf_FFHTdWSwHaFP?r=0&rs=1&pid=ImgDetMain" alt="WarZone" class="game-image">
+                    <div class="game-name">WarZone</div>
+                </div>
             </div>
-            <img src="https://static.tuasaude.com/media/article/cq/wo/alimentos-ultraprocessados_61429_l.jpg" alt="Hamburguesa">
         </div>
+    </div>
+    
+    <!-- Popup de Discord -->
+    <div class="popup" id="discordPopup">
+        <h3 class="popup-title">Únete a nuestro Discord</h3>
+        <p style="text-align: center; margin-bottom: 15px;">Conéctate con nuestra comunidad y participa en eventos, torneos y más.</p>
         
-        <div class="tabs-container">
-            <ul class="tabs">
-                <li class="tab" data-tab="problem">Problem</li>
-                <li class="tab" data-tab="effects">Effects</li>
-                <li class="tab" data-tab="action">Action plan</li>
-                <li class="tab" data-tab="ad">Interactive Ad</li>
-                <li class="tab" data-tab="impact">Impact</li>
+        <div class="rules-container">
+            <h4 class="rules-title">Reglas del servidor:</h4>
+            <ul class="rules-list">
+                <li>Se espera un comportamiento adecuado, nada de insultar con intenciones ofensivas o tratar mal.</li>
+                <li>Evitar publicar imágenes no adecuadas.</li>
+                <li>Cualquier inquietud, solicitar ayuda a los administradores.</li>
+                <li>En los torneos, se espera un comportamiento no tóxico.</li>
+                <li>Evitar comportamiento fantasmal, solo publicas tus redes sin interactuar.</li>
             </ul>
-            
-            <div id="problem" class="content">
-                <div class="problem-content">
-                    <p>Over-processed foods have become so common in everyday life that people no longer pay attention to what they eat.</p>
-                    
-                    <div class="problem-buttons">
-                        <button class="problem-btn" data-info="food">Food</button>
-                        <button class="problem-btn" data-info="companies">Companies</button>
-                        <button class="problem-btn" data-info="contamination">Contamination</button>
-                    </div>
-                    
-                    <div id="food-info" class="problem-info">
-                        <p>It is essential to know what you eat. Some processed foods often contain excessive amounts of unhealthy additives, such as artificial colorings, flavorings and preservatives, which can alter the metabolism and cause effects.</p>
-                        <img src="https://th.bing.com/th/id/OIP.R_PdQCvPK06m__c2KjaY6AHaFW?rs=1&pid=ImgDetMain" alt="Processed food">
-                    </div>
-                    
-                    <div id="companies-info" class="problem-info">
-                        <p>Poorly processed or over processed foods are a direct risk to your health. Your body is not made for it. Ignoring this is playing with fire. Think of the consequences: from simple food poisoning to serious chronic illness.</p>
-                        <img src="https://www.geprom.com/wp-content/uploads/2021/06/iStock-1176094666.jpg" alt="Food company">
-                    </div>
-                    
-                    <div id="contamination-info" class="problem-info">
-                        <p>Companies pollute to maximize profits, ignoring the long-term damage. Pesticides and herbicides poison the land, water and our food, directly affecting our health and ecosystem.</p>
-                        <img src="https://img.freepik.com/premium-photo/person-spraying-pesticide-bush_386897-11389.jpg" alt="Pesticide spraying">
-                    </div>
-                </div>
-            </div>
-            
-            <div id="effects" class="content">
-                <div class="effects-tabs">
-                    <button class="effects-tab active-effects-tab" data-effects="processed">Processed Foods</button>
-                    <button class="effects-tab" data-effects="unprocessed">Unprocessed Foods</button>
-                </div>
-                
-                <div id="processed-content" class="effects-content active-effects-content">
-                    <div class="effects-list">
-                        <p>Food is important for health, but overeating excessively processed foods that do not provide the nutrients the body needs will cause problems in the long term, such as:</p>
-                        <ul>
-                            <li>Obesity Epidemic: Hyper-palatable foods disrupt natural satiety signals leading to overconsumption</li>
-                            <li>Cardiovascular Disease: Trans fats and excess sodium damage arteries and increase blood pressure</li>
-                            <li>Type 2 Diabetes: Refined carbohydrates cause insulin resistance and blood sugar spikes</li>
-                            <li>Gut Health: Lack of fiber destroys microbiome diversity and promotes inflammation</li>
-                            <li>Mental Health: Linked to increased rates of depression, anxiety, and ADHD</li>
-                        </ul>
-                    </div>
-                    <div class="quote">
-                        <p>Being attentive to what we eat will give us a long and healthy life, but do not forget to exercise as a complement.</p>
-                    </div>
-                </div>
-                
-                <div id="unprocessed-content" class="effects-content">
-                    <div class="effects-list">
-                        <p>Food is important for health, eating the right proportions and the nutrients you need will help you to have a better health.</p>
-                        <ul>
-                            <li>Weight Management: Natural foods promote healthy metabolism and satiety</li>
-                            <li>Heart Health: Rich in healthy fats, fiber and antioxidants that protect cardiovascular system</li>
-                            <li>Blood Sugar Control: Complex carbohydrates and fiber prevent insulin spikes</li>
-                            <li>Gut Microbiome: Prebiotic fibers feed beneficial gut bacteria</li>
-                            <li>Brain Function: Essential fatty acids and nutrients support cognitive health</li>
-                            <li>Longevity: Associated with longer lifespan and reduced chronic disease risk</li>
-                        </ul>
-                    </div>
-                    <div class="quote">
-                        <p>Being attentive to what we eat will give us a long and healthy life, but do not forget to exercise as a complement.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="action" class="content">
-                <div class="action-plan">
-                    <p>Ask for a space at the university.</p>
-                    <p>Show damage to health.</p>
-                    <p>Show the benefits of good nutrition.</p>
-                    <p>Prioritize whole foods, read food labels, cook at home more often.</p>
-                </div>
-            </div>
-            
-            <div id="ad" class="content">
-                <div class="interactive-ad">
-                    <div class="ad-container">
-                        <div class="ad-card">
-                            <div class="card-face front">
-                                <img src="https://i.ibb.co/n81d4YdQ/Whats-App-Image-2025-05-15-at-11-01-48-PM.jpg" alt="Publicidad" class="card-image">
-                            </div>
-                            <div class="card-face back">
-                                <img src="https://i.ibb.co/XrCP9QWh/Whats-App-Image-2025-05-15-at-11-01-48-PM-1.jpg" alt="Publicidad Reverso" class="card-image">
-                            </div>
-                        </div>
-                        <button class="toggle-button pulse">Flyer</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="impact" class="content">
-                <div class="impact-content">
-                    <p>The people who were given the information said that it was useful for them to understand the importance of eating balanced food, not stopping consuming them, just knowing what proportions to eat in order not to affect the body.</p>
-                </div>
-            </div>
         </div>
         
-        <footer>
-            <div class="opinion-text">We care about your opinion</div>
-            <button class="survey-btn">Survey</button>
-        </footer>
+        <a href="https://discord.gg/3JMfHvJEY3" target="_blank" class="join-btn">Unirse</a>
+        <button class="close-btn" id="closeDiscord"></button>
     </div>
-
-    <!-- Modal for Survey -->
-    <div class="modal" id="surveyModal">
-        <div class="modal-content">
-            <button class="close-modal">&times;</button>
-            <div class="survey-iframe-container">
-                <iframe class="survey-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSdZyROTPNx1uyyDzee9bQ4SgwsZcX_3uAOiuc4WV6XHLO62Fg/viewform?embedded=true"></iframe>
-            </div>
-        </div>
+    
+    <!-- Popup de Miembros -->
+    <div class="popup" id="membersPopup">
+        <h3 class="popup-title">Miembros de la comunidad</h3>
+        <ul class="member-list">
+            <li class="member-item">Chicharrón_TTV</li>
+            <li class="member-item">IISSMMA19_TTV</li>
+            <li class="member-item">HuHu</li>
+            <li class="member-item">Kuro</li>
+            <li class="member-item">Noe</li>
+            <li class="member-item">Vikorey</li>
+            <li class="member-item">Dam</li>
+            <li class="member-item">Santiago L</li>
+            <li class="member-item">corazón negro</li>
+            <li class="member-item">Hansy</li>
+            <li class="member-item">Jesús</li>
+            <li class="member-item">Aaron</li>
+            <li class="member-item">TheObsidianBoy</li>
+            <li class="member-item">Jota</li>
+            <li class="member-item">Lovecraft</li>
+            <li class="member-item">Enrique</li>
+            <!-- Aquí para que ingreses más participantes -->
+        </ul>
+        <button class="close-btn" id="closeMembers"></button>
     </div>
-
+    
+    <!-- Popup de Twitch -->
+    <div class="popup" id="twitchPopup">
+        <h3 class="popup-title">Streamers de la comunidad</h3>
+        <ul class="member-list">
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Chicharrón_TTV</a>
+            </li>
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">IISSMMA19_TTV</a>
+            </li>
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">HuHu</a>
+            </li>
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Kuro</a>
+            </li>
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Noe</a>
+            </li>
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Vikorey</a>
+            </li>
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Dam</a>
+            </li>
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Santiago L</a>
+            </li>
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">corazón negro</a>
+            </li>
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Hansy</a>
+            </li>
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Jesús</a>
+            </li>
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Aaron</a>
+            </li>
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">TheObsidianBoy</a>
+            </li>
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Jota</a>
+            </li>
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Lovecraft</a>
+            </li>
+            <li class="member-item">
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Enrique</a>
+            </li>
+            <!-- Aquí para que ingreses más participantes -->
+        </ul>
+        <button class="close-btn" id="closeTwitch"></button>
+    </div>
+    
     <script>
+        // Funcionalidad de los botones
         document.addEventListener('DOMContentLoaded', function() {
-            // Tab functionality
-            const tabs = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.content');
+            // Discord
+            const discordBtn = document.getElementById('discordBtn');
+            const discordPopup = document.getElementById('discordPopup');
+            const closeDiscord = document.getElementById('closeDiscord');
             
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Remove active class from all tabs and contents
-                    tabs.forEach(t => t.classList.remove('active-tab'));
-                    contents.forEach(c => c.classList.remove('active-content'));
-                    
-                    // Add active class to clicked tab and corresponding content
-                    this.classList.add('active-tab');
-                    const tabId = this.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active-content');
-                    
-                    // Special animation for Impact tab
-                    if (tabId === 'impact') {
-                        const impactContent = document.getElementById(tabId);
-                        impactContent.style.animation = 'none';
-                        void impactContent.offsetWidth; // Trigger reflow
-                        impactContent.style.animation = 'explode 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                    }
-                });
+            discordBtn.addEventListener('click', function() {
+                closeAllPopups();
+                discordPopup.classList.add('active');
+                discordBtn.classList.add('active');
             });
             
-            // Set first tab as active by default
-            tabs[0].classList.add('active-tab');
-            contents[0].classList.add('active-content');
-            
-            // Problem buttons functionality
-            const problemBtns = document.querySelectorAll('.problem-btn');
-            const problemInfos = document.querySelectorAll('.problem-info');
-            
-            problemBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const infoId = this.getAttribute('data-info') + '-info';
-                    
-                    // Hide all info sections
-                    problemInfos.forEach(info => {
-                        info.classList.remove('active-info');
-                    });
-                    
-                    // Show selected info section
-                    document.getElementById(infoId).classList.add('active-info');
-                });
+            closeDiscord.addEventListener('click', function() {
+                discordPopup.classList.remove('active');
+                discordBtn.classList.remove('active');
             });
             
-            // Set first problem info as active by default
-            if (problemInfos.length > 0) {
-                problemInfos[0].classList.add('active-info');
+            // Miembros
+            const membersBtn = document.getElementById('membersBtn');
+            const membersPopup = document.getElementById('membersPopup');
+            const closeMembers = document.getElementById('closeMembers');
+            
+            membersBtn.addEventListener('click', function() {
+                closeAllPopups();
+                membersPopup.classList.add('active');
+                membersBtn.classList.add('active');
+            });
+            
+            closeMembers.addEventListener('click', function() {
+                membersPopup.classList.remove('active');
+                membersBtn.classList.remove('active');
+            });
+            
+            // Twitch
+            const twitchBtn = document.getElementById('twitchBtn');
+            const twitchPopup = document.getElementById('twitchPopup');
+            const closeTwitch = document.getElementById('closeTwitch');
+            
+            twitchBtn.addEventListener('click', function() {
+                closeAllPopups();
+                twitchPopup.classList.add('active');
+                twitchBtn.classList.add('active');
+            });
+            
+            closeTwitch.addEventListener('click', function() {
+                twitchPopup.classList.remove('active');
+                twitchBtn.classList.remove('active');
+            });
+            
+            // Juegos
+            const gamesBtn = document.getElementById('gamesBtn');
+            const gamesGallery = document.getElementById('gamesGallery');
+            
+            gamesBtn.addEventListener('click', function() {
+                gamesGallery.classList.toggle('active');
+                gamesBtn.classList.toggle('active');
+            });
+            
+            // Función para cerrar todos los popups
+            function closeAllPopups() {
+                discordPopup.classList.remove('active');
+                membersPopup.classList.remove('active');
+                twitchPopup.classList.remove('active');
+                
+                discordBtn.classList.remove('active');
+                membersBtn.classList.remove('active');
+                twitchBtn.classList.remove('active');
             }
             
-            // Effects tabs functionality
-            const effectsTabs = document.querySelectorAll('.effects-tab');
-            const effectsContents = document.querySelectorAll('.effects-content');
-            
-            effectsTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Remove active class from all effects tabs and contents
-                    effectsTabs.forEach(t => t.classList.remove('active-effects-tab'));
-                    effectsContents.forEach(c => c.classList.remove('active-effects-content'));
-                    
-                    // Add active class to clicked tab and corresponding content
-                    this.classList.add('active-effects-tab');
-                    const effectsId = this.getAttribute('data-effects') + '-content';
-                    document.getElementById(effectsId).classList.add('active-effects-content');
-                });
-            });
-            
-            // Typing animation for action plan
-            const actionPlanTexts = document.querySelectorAll('.action-plan p');
-            let delay = 0;
-            
-            actionPlanTexts.forEach((text, index) => {
-                // Store original text
-                const originalText = text.textContent;
-                text.textContent = '';
-                
-                // Set animation delay based on index
-                setTimeout(() => {
-                    text.style.animation = `typing 2s steps(${originalText.length}, end), blink-caret 0.75s step-end infinite`;
-                    text.textContent = originalText;
-                    
-                    // After animation completes, remove animation styles
-                    setTimeout(() => {
-                        text.style.animation = 'none';
-                        text.style.borderRight = 'none';
-                        text.style.whiteSpace = 'normal';
-                    }, 2000);
-                }, delay);
-                
-                delay += 2500; // Increment delay for next paragraph
-            });
-            
-            // Survey modal functionality
-            const surveyBtn = document.querySelector('.survey-btn');
-            const surveyModal = document.getElementById('surveyModal');
-            const closeModal = document.querySelector('.close-modal');
-            
-            surveyBtn.addEventListener('click', function() {
-                surveyModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-            });
-            
-            closeModal.addEventListener('click', function() {
-                surveyModal.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Re-enable scrolling
-            });
-            
-            // Close modal when clicking outside the content
-            surveyModal.addEventListener('click', function(e) {
-                if (e.target === surveyModal) {
-                    surveyModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
+            // Cerrar popups al hacer clic fuera
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.popup') && !event.target.closest('.button')) {
+                    closeAllPopups();
                 }
             });
             
-            // Close modal with Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && surveyModal.style.display === 'flex') {
-                    surveyModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
+            // Cerrar popups con ESC
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeAllPopups();
                 }
             });
-            
-            // Interactive Ad functionality
-            const adCard = document.querySelector('.ad-card');
-            const toggleButton = document.querySelector('.toggle-button');
-            let isVisible = false;
-
-            function toggleCard() {
-                isVisible = !isVisible;
-                
-                if (isVisible) {
-                    adCard.classList.add('visible');
-                    toggleButton.textContent = 'Hide Flyer';
-                    toggleButton.classList.remove('pulse');
-                } else {
-                    adCard.classList.remove('visible', 'flipped');
-                    toggleButton.textContent = 'View Flyer';
-                    toggleButton.classList.add('pulse');
-                }
-            }
-
-            function flipCard() {
-                if (!isVisible) return;
-                adCard.classList.toggle('flipped');
-            }
-
-            toggleButton.addEventListener('click', toggleCard);
-            adCard.addEventListener('click', flipCard);
         });
     </script>
 </body>

@@ -150,6 +150,25 @@
         }
         
         /* Ventanas emergentes */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
         .popup {
             position: fixed;
             top: 50%;
@@ -158,7 +177,7 @@
             width: 90%;
             max-width: 400px;
             max-height: 80vh;
-            background-color: #151530;
+            background-color: rgba(21, 21, 48, 0.95);
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
@@ -167,6 +186,7 @@
             overflow-y: auto;
             opacity: 0;
             visibility: hidden;
+            backdrop-filter: blur(10px);
         }
         
         .popup.active {
@@ -179,6 +199,14 @@
             margin-bottom: 20px;
             font-size: 1.5rem;
             text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        
+        .popup-title:hover {
+            background-color: rgba(255, 123, 0, 0.2);
         }
         
         .close-btn {
@@ -220,13 +248,13 @@
         .member-item {
             padding: 10px;
             margin: 5px 0;
-            background-color: #252545;
+            background-color: rgba(37, 37, 69, 0.7);
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
         
         .member-item:hover {
-            background-color: #353565;
+            background-color: rgba(53, 53, 101, 0.7);
         }
         
         .twitch-link {
@@ -433,23 +461,30 @@
                 </div>
                 <div class="game-card">
                     <img src="https://th.bing.com/th/id/OIP._hQeorxZm4x_Jg2LsPzXtAAAAA?r=0&rs=1&pid=ImgDetMain" alt="Apex Legends" class="game-image">
-                    <div class="game-name">Apex Legends</div>
+                    <div class="game-name">APEX LEGENDS</div>
                 </div>
                 <div class="game-card">
                     <img src="https://i.pinimg.com/originals/8f/16/e9/8f16e97ab5cc7873debc229c7a527a07.jpg" alt="Fortnite" class="game-image">
-                    <div class="game-name">Fortnite</div>
+                    <div class="game-name">FORTNITE</div>
                 </div>
                 <div class="game-card">
                     <img src="https://th.bing.com/th/id/OIP.HCb9qcYZmDUtf_FFHTdWSwHaFP?r=0&rs=1&pid=ImgDetMain" alt="WarZone" class="game-image">
-                    <div class="game-name">WarZone</div>
+                    <div class="game-name">WARZONE</div>
+                </div>
+                <div class="game-card">
+                    <img src="https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2017/02/minecraft-caratula.jpg?tf=1080x" alt="MINECRAFT" class="game-image">
+                    <div class="game-name">MINECRAFT</div>
                 </div>
             </div>
         </div>
     </div>
     
+    <!-- Overlay para efecto blur -->
+    <div class="popup-overlay" id="popupOverlay"></div>
+    
     <!-- Popup de Discord -->
     <div class="popup" id="discordPopup">
-        <h3 class="popup-title">Únete a nuestro Discord</h3>
+        <h3 class="popup-title" id="discordTitle">Únete a nuestro Discord</h3>
         <p style="text-align: center; margin-bottom: 15px;">Conéctate con nuestra comunidad y participa en eventos, torneos y más.</p>
         
         <div class="rules-container">
@@ -469,19 +504,18 @@
     
     <!-- Popup de Miembros -->
     <div class="popup" id="membersPopup">
-        <h3 class="popup-title">Miembros de la comunidad</h3>
+        <h3 class="popup-title" id="membersTitle">Miembros de la comunidad</h3>
         <ul class="member-list">
-            <li class="member-item">Chicharrón_TTV</li>
-            <li class="member-item">IISSMMA19_TTV</li>
+            <li class="member-item">Chicharron_ttv</li>
+            <li class="member-item">iissmmaa19ttv</li>
             <li class="member-item">HuHu</li>
             <li class="member-item">Kuro</li>
             <li class="member-item">Noe</li>
             <li class="member-item">Vikorey</li>
-            <li class="member-item">Dam</li>
             <li class="member-item">Santiago L</li>
             <li class="member-item">Nixxena</li>
             <li class="member-item">Hansy</li>
-            <li class="member-item">Jesús</li>
+            <li class="member-item">x_uchihagsus_x</li>
             <li class="member-item">Aaron</li>
             <li class="member-item">TheObsidianBoy</li>
             <li class="member-item">Jota</li>
@@ -494,56 +528,28 @@
     
     <!-- Popup de Twitch -->
     <div class="popup" id="twitchPopup">
-        <h3 class="popup-title">Streamers de la comunidad</h3>
+        <h3 class="popup-title" id="twitchTitle">Streamers de la comunidad</h3>
         <ul class="member-list">
             <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Chicharrón_TTV</a>
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Chicharron_ttv</a>
             </li>
             <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">IISSMMA19_TTV</a>
+                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">iissmmaa19tv</a>
             </li>
             <li class="member-item">
                 <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">HuHu</a>
             </li>
-            <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Kuro</a>
-            </li>
-            <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Noe</a>
-            </li>
-            <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Vikorey</a>
-            </li>
-            <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Dam</a>
-            </li>
-            <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Santiago L</a>
-            </li>
+            
             <li class="member-item">
                 <a href="https://www.twitch.tv/nixxenna" target="_blank" class="twitch-link">Nixxena</a>
             </li>
             <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Hansy</a>
-            </li>
-            <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Jesús</a>
-            </li>
-            <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Aaron</a>
+                <a href="https://www.twitch.tv/x_uchihagsus_x?sr=a" target="_blank" class="twitch-link">x_uchihagsus_x</a>
             </li>
             <li class="member-item">
                 <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">TheObsidianBoy</a>
             </li>
-            <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Jota</a>
-            </li>
-            <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Lovecraft</a>
-            </li>
-            <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">Enrique</a>
-            </li>
+
             <!-- Aquí para que ingreses más participantes -->
         </ul>
         <button class="close-btn" id="closeTwitch"></button>
@@ -664,19 +670,23 @@
             const videos = [
                 {
                     id: "VjMnIDyXlAU",
-                    title: "THE FINALS - Gameplay"
+                    title: "THE FINALS - chicharron_ttv"
                 },
                 {
                     id: "U2277C9FSLA",
-                    title: "Apex Legends - Highlights"
+                    title: "THE FINALS - chicharron_ttv"
                 },
                 {
                     id: "wqFc14Fykkk",
-                    title: "Fortnite - Nuevas actualizaciones"
+                    title: "FORTNITE - iissmmaa19ttv"
                 },
                 {
                     id: "JYHaeHTyxPA",
-                    title: "WarZone - Mejores momentos"
+                    title: "FORTNITE - iissmmaa19ttv"
+                },
+                {
+                    id: "_QUp2UZptik",
+                    title: "APEX LEGENDS - iissmmaa19ttv"
                 }
                 // Agrega más videos aquí con el mismo formato
             ];
@@ -717,55 +727,63 @@
             loadRandomVideo();
             
             // Configurar intervalo para cambiar videos (por si acaso no se detecta el evento ended)
-            setInterval(nextVideo, 60000); // Cambia cada 60 segundos
+            setInterval(nextVideo, 600000); // Cambia cada 60 segundos
             
             // Funcionalidad de los botones
+            const popupOverlay = document.getElementById('popupOverlay');
+            
             // Discord
             const discordBtn = document.getElementById('discordBtn');
             const discordPopup = document.getElementById('discordPopup');
             const closeDiscord = document.getElementById('closeDiscord');
+            const discordTitle = document.getElementById('discordTitle');
             
             discordBtn.addEventListener('click', function() {
-                closeAllPopups();
-                discordPopup.classList.add('active');
-                discordBtn.classList.add('active');
+                openPopup(discordPopup, discordBtn);
             });
             
             closeDiscord.addEventListener('click', function() {
-                discordPopup.classList.remove('active');
-                discordBtn.classList.remove('active');
+                closePopup(discordPopup, discordBtn);
+            });
+            
+            discordTitle.addEventListener('click', function() {
+                closePopup(discordPopup, discordBtn);
             });
             
             // Miembros
             const membersBtn = document.getElementById('membersBtn');
             const membersPopup = document.getElementById('membersPopup');
             const closeMembers = document.getElementById('closeMembers');
+            const membersTitle = document.getElementById('membersTitle');
             
             membersBtn.addEventListener('click', function() {
-                closeAllPopups();
-                membersPopup.classList.add('active');
-                membersBtn.classList.add('active');
+                openPopup(membersPopup, membersBtn);
             });
             
             closeMembers.addEventListener('click', function() {
-                membersPopup.classList.remove('active');
-                membersBtn.classList.remove('active');
+                closePopup(membersPopup, membersBtn);
+            });
+            
+            membersTitle.addEventListener('click', function() {
+                closePopup(membersPopup, membersBtn);
             });
             
             // Twitch
             const twitchBtn = document.getElementById('twitchBtn');
             const twitchPopup = document.getElementById('twitchPopup');
             const closeTwitch = document.getElementById('closeTwitch');
+            const twitchTitle = document.getElementById('twitchTitle');
             
             twitchBtn.addEventListener('click', function() {
-                closeAllPopups();
-                twitchPopup.classList.add('active');
-                twitchBtn.classList.add('active');
+                openPopup(twitchPopup, twitchBtn);
             });
             
             closeTwitch.addEventListener('click', function() {
-                twitchPopup.classList.remove('active');
-                twitchBtn.classList.remove('active');
+                closePopup(twitchPopup, twitchBtn);
+            });
+            
+            twitchTitle.addEventListener('click', function() {
+                closePopup(twitchPopup, twitchBtn);
             });
             
             // Juegos
@@ -777,8 +795,24 @@
                 gamesBtn.classList.toggle('active');
             });
             
+            // Función para abrir popups
+            function openPopup(popup, button) {
+                closeAllPopups();
+                popupOverlay.classList.add('active');
+                popup.classList.add('active');
+                button.classList.add('active');
+            }
+            
+            // Función para cerrar popups
+            function closePopup(popup, button) {
+                popupOverlay.classList.remove('active');
+                popup.classList.remove('active');
+                button.classList.remove('active');
+            }
+            
             // Función para cerrar todos los popups
             function closeAllPopups() {
+                popupOverlay.classList.remove('active');
                 discordPopup.classList.remove('active');
                 membersPopup.classList.remove('active');
                 twitchPopup.classList.remove('active');
@@ -788,11 +822,9 @@
                 twitchBtn.classList.remove('active');
             }
             
-            // Cerrar popups al hacer clic fuera
-            document.addEventListener('click', function(event) {
-                if (!event.target.closest('.popup') && !event.target.closest('.button')) {
-                    closeAllPopups();
-                }
+            // Cerrar popups al hacer clic en el overlay
+            popupOverlay.addEventListener('click', function() {
+                closeAllPopups();
             });
             
             // Cerrar popups con ESC

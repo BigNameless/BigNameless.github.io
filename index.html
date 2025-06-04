@@ -209,34 +209,6 @@
             background-color: rgba(255, 123, 0, 0.2);
         }
         
-        .close-btn {
-            position: absolute;
-            bottom: 15px;
-            left: 15px;
-            background-color: #ff7b00;
-            color: #0a0a1a;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .close-btn:hover {
-            background-color: #ff9b40;
-            transform: scale(1.1);
-        }
-        
-        .close-btn::before {
-            content: '←';
-        }
-        
         /* Lista de miembros */
         .member-list {
             list-style-type: none;
@@ -499,7 +471,6 @@
         </div>
         
         <a href="https://discord.gg/3JMfHvJEY3" target="_blank" class="join-btn">Unirse</a>
-        <button class="close-btn" id="closeDiscord"></button>
     </div>
     
     <!-- Popup de Miembros -->
@@ -523,7 +494,6 @@
             <li class="member-item">Enrique</li>
             <!-- Aquí para que ingreses más participantes -->
         </ul>
-        <button class="close-btn" id="closeMembers"></button>
     </div>
     
     <!-- Popup de Twitch -->
@@ -537,7 +507,7 @@
                 <a href="https://www.twitch.tv/iissmmaa19ttv?sr=a" target="_blank" class="twitch-link">iissmmaa19tv</a>
             </li>
             <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">HuHu</a>
+                <a href="https://bignameless.github.io/Chicharron/" target="_blank" class="twitch-link">HuHu</a>
             </li>
             
             <li class="member-item">
@@ -547,12 +517,11 @@
                 <a href="https://www.twitch.tv/x_uchihagsus_x?sr=a" target="_blank" class="twitch-link">x_uchihagsus_x</a>
             </li>
             <li class="member-item">
-                <a href="https://www.twitch.tv/chicharron_ttv?sr=a" target="_blank" class="twitch-link">TheObsidianBoy</a>
+                <a href="https://bignameless.github.io/Chicharron/" target="_blank" class="twitch-link">TheObsidianBoy</a>
             </li>
 
             <!-- Aquí para que ingreses más participantes -->
         </ul>
-        <button class="close-btn" id="closeTwitch"></button>
     </div>
     
     <!-- Scripts -->
@@ -735,15 +704,10 @@
             // Discord
             const discordBtn = document.getElementById('discordBtn');
             const discordPopup = document.getElementById('discordPopup');
-            const closeDiscord = document.getElementById('closeDiscord');
             const discordTitle = document.getElementById('discordTitle');
             
             discordBtn.addEventListener('click', function() {
                 openPopup(discordPopup, discordBtn);
-            });
-            
-            closeDiscord.addEventListener('click', function() {
-                closePopup(discordPopup, discordBtn);
             });
             
             discordTitle.addEventListener('click', function() {
@@ -753,15 +717,10 @@
             // Miembros
             const membersBtn = document.getElementById('membersBtn');
             const membersPopup = document.getElementById('membersPopup');
-            const closeMembers = document.getElementById('closeMembers');
             const membersTitle = document.getElementById('membersTitle');
             
             membersBtn.addEventListener('click', function() {
                 openPopup(membersPopup, membersBtn);
-            });
-            
-            closeMembers.addEventListener('click', function() {
-                closePopup(membersPopup, membersBtn);
             });
             
             membersTitle.addEventListener('click', function() {
@@ -771,15 +730,10 @@
             // Twitch
             const twitchBtn = document.getElementById('twitchBtn');
             const twitchPopup = document.getElementById('twitchPopup');
-            const closeTwitch = document.getElementById('closeTwitch');
             const twitchTitle = document.getElementById('twitchTitle');
             
             twitchBtn.addEventListener('click', function() {
                 openPopup(twitchPopup, twitchBtn);
-            });
-            
-            closeTwitch.addEventListener('click', function() {
-                closePopup(twitchPopup, twitchBtn);
             });
             
             twitchTitle.addEventListener('click', function() {
